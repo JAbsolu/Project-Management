@@ -83,21 +83,21 @@ const NewPost = () => {
         <img
           src={illustration}
           alt="user"
-          width={isMobile ? "45px" : "60px"}
-          height={isMobile ? "45px" : "60px"}
+          width={isMobile ? "40px" : "45px"}
+          height={isMobile ? "40px" : "45px"}
           style={{ borderRadius: "50%" }}
         />
         <input
             type="text"
             onClick={handleOpen}
             style={{
-              width: "90%",
-              background: "#6a798952",
-              border: "none",
-              fontSize: "1rem",
-              padding: "0.8rem 0.2rem",
+              width: "95%",
+              height: "2.5rem",
+              background: "rgb(58 69 85)",
+              border: "solid #fff 1px",
+              padding: "0.5rem 0.2rem",
               color: "#fff",
-              borderRadius: "1.5rem",
+              borderRadius: "0.2rem",
             }}
         />
         </Box>
@@ -108,7 +108,7 @@ const NewPost = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style} component="form" onSubmit={createPost}>
-            <Typography variant="h6" mb="1rem" textAlign="center" >Create new post</Typography>
+            {/* <Typography variant="h6" mb="1rem" textAlign="center" >Create new post</Typography> */}
             <TextField 
                 name="userId" 
                 value={currentUser._id} 

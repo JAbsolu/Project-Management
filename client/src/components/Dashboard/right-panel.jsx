@@ -17,11 +17,11 @@ const RightPanel = () => {
     return (
         // TASKS FEED
         <Box
-          width="auto"
           minHeight={!isMobile ? "100vh" : "auto"}
           sx={{
             // background: "#00000061",
             background: "#ffffff03",
+            minWidth: "25%",
             padding: "0.5rem 1rem",
             overflowY: "scroll",
             mt: "0.3rem",
@@ -32,7 +32,7 @@ const RightPanel = () => {
             sx={{
               display: "flex",
               justifyContent: "space-between",
-              minWidth: "15rem",
+              minWidth: "100%",
             }}
           >
             <Typography

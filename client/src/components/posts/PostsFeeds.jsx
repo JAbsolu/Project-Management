@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Box, Typography, useMediaQuery } from "@mui/material";
+import { Box, Divider, Typography, useMediaQuery } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AddCommentIcon from "@mui/icons-material/AddComment";
 import illustration from "../../media/illustration.png";
@@ -64,20 +64,23 @@ const PostsFeeds = ({ name, title, commentsLength, text, allComments }) => {
         <Box>
           <Typography sx={{fontSize: isMobile ? '0.85rem' : "0.9rem", lineHeight: 2, }}>{text}</Typography>
         </Box>
+        {/* LIKES AND COMMENTS CONTAINER */}
+        <Divider sx={{ mt: "1rem"}} />
         <Box
           sx={{
             display: "flex",
             gap: "1rem",
-            alignItems: "center",
-            mt: "1rem",
-            maxWidth: "90%",
+            alignItems: "end",
+            justifyContent: "end",
+            margin: "0.2rem 0",
+            maxWidth: "100%",
           }}
         >
           <Box
             sx={{
               display: "flex",
               gap: "0.5rem",
-              p: "0.75rem",
+              p: "0.5rem",
               borderRadius: "5px",
               "&:hover": {
                 cursor: "pointer",
@@ -92,7 +95,7 @@ const PostsFeeds = ({ name, title, commentsLength, text, allComments }) => {
             sx={{
               display: "flex",
               gap: "0.5rem",
-              p: "0.75rem",
+              p: "0.5rem",
               borderRadius: "5px",
               "&:hover": {
                 cursor: "pointer",
@@ -111,7 +114,16 @@ const PostsFeeds = ({ name, title, commentsLength, text, allComments }) => {
         </Box>
 
          {/* This will open when comments are clicked */}
-         <Box sx={{ p:'0.5rem', display: "flex", flexDirection: "column", gap: "0.5rem", maxWidth: "100%" }}>
+         <Divider sx={{ color: "#fff"}}/>
+         <Box sx={{ 
+                p:'0.5rem', 
+                display: "flex", 
+                justifyContent: 'end', 
+                alignItems: 'end', 
+                flexDirection: "column", 
+                gap: "0.5rem", 
+                maxWidth: "100%" 
+              }}>
               <Typography sx={{ fontSize: isMobile ? '0.75rem' : "0.85rem" }}>
                 {allComments}
               </Typography>

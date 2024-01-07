@@ -7,7 +7,7 @@ import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import illustration from "../../media/illustration.png";
 import { Tasks } from "../../components/Dashboard/DashboardComponents";
-import TeammatesCards from "../../components/Cards/TeammatesCard";
+import TeammatesCards from "../Cards/TeammatesCard";
 
 const DashboardUserinfo = () => {
   const userFullName = `${currentUser.firstName} ${currentUser.lastName}`;

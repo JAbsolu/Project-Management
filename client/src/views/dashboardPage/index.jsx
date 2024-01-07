@@ -27,7 +27,8 @@ import { useState, useEffect } from "react";
 import { useMediaQuery } from "@mui/material";
 import PostsFeeds from "../../components/posts/PostsFeeds";
 import NewPost from "../../components/posts/newPost";
-import RightPanel from "./right-panel";
+import RightPanel from "../../components/Dashboard/right-panel";
+import { FormatAlignLeft } from "@mui/icons-material";
 
 const drawerWidth = 240;
 
@@ -105,6 +106,7 @@ const Dashboard = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const isMobile = useMediaQuery("(max-width: 600px)");
+  const isWideScreen = useMediaQuery("(min-width: 1500px)");
 
 
   // GET ALL POSTS
@@ -269,8 +271,8 @@ const Dashboard = () => {
             sx={{
               // background: "#00000061",
               background: "#ffffff03",
-              maxWidth: isMobile ? "100rem" : "70%",
-              padding: isMobile ? null : "0.5rem 1rem",
+              maxWidth: isMobile ? "100rem" : "95rem",
+              padding: isWideScreen ? "0.5rem 12rem" : isMobile? "0.5rem 0 " : "0.5rem 5rem",
               overflowY: "scroll",
               mt: "0.3rem",
               ml: "0.2rem",
@@ -278,13 +280,12 @@ const Dashboard = () => {
             }}
           >
             <Typography
-              variant={isMobile ? "h6" : "h5"}
               fontWeight="bold"
               fontSize={isMobile ? "1rem" : "1.2rem"}
               p="0.25rem 0"
               mb="0.5rem"
             >
-              Posts Feed
+              Posts
             </Typography>
             <Box
               sx={{
@@ -295,10 +296,10 @@ const Dashboard = () => {
                 maxWidth: "100%",
               }}
             >
-              <Typography fontWeight="bold" mb={isMobile ? "1rem" :"0.5rem"}>
+              <Typography fontWeight="500" fontSize="1rem" mb={isMobile ? "1rem" :"0rem"}>
                 Add a post
               </Typography>
-
+              <Divider textAlign="left" sx={{mb: "1rem"}}/>
                 {/* NEW POST COMPONENT */}
                 <NewPost />
 
