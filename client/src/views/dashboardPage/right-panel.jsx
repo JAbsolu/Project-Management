@@ -2,7 +2,9 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import illustration from "../../media/illustration.png";
 import { useMediaQuery } from "@mui/material";
-import { Tasks } from "../../components/Dashboard-components/DashboardComponents";
+import { Tasks } from "../../components/Dashboard/DashboardComponents";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const RightPanel = () => {
 
@@ -10,6 +12,7 @@ const RightPanel = () => {
     const [tasksErr, setTasksErr] = useState();
     const currentUser = useSelector((state) => state.user);
     const isMobile = useMediaQuery("(max-width: 600px)");
+    
 
     return (
         // TASKS FEED

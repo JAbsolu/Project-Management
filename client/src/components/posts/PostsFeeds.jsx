@@ -31,10 +31,11 @@ const PostsFeeds = ({ name, title, commentsLength, text, allComments }) => {
   }, []);
 
   return (
-    <Box>
+    <Box sx={{ maxWidth: "100rem"}}>
       <Box
         sx={{
           background: "#212e3f",
+          maxWidth: isMobile ? "100%" : null,
           p: "1rem",
           m: "1rem 0",
           borderRadius: "5px",
@@ -51,16 +52,17 @@ const PostsFeeds = ({ name, title, commentsLength, text, allComments }) => {
           <img
             src={illustration}
             alt="user"
-            width="60px"
-            style={{ borderRadius: "0.3rem" }}
+            width="45px"
+            height="45px"
+            style={{ borderRadius: "50%" }}
           />
           <Box>
             <Typography fontWeight="bolder"> {name} </Typography>
-            <Typography fontWeight="bolder"> {title} </Typography>
+            <Typography fontWeight="500"> {title} </Typography>
           </Box>
         </Box>
         <Box>
-          <Typography sx={{ lineHeight: 2, }}>{text}</Typography>
+          <Typography sx={{fontSize: isMobile ? '0.85rem' : "1rem", lineHeight: 2, }}>{text}</Typography>
         </Box>
         <Box
           sx={{
@@ -68,6 +70,7 @@ const PostsFeeds = ({ name, title, commentsLength, text, allComments }) => {
             gap: "1rem",
             alignItems: "center",
             mt: "1rem",
+            maxWidth: "90%",
           }}
         >
           <Box
@@ -82,8 +85,8 @@ const PostsFeeds = ({ name, title, commentsLength, text, allComments }) => {
               },
             }}
           >
-            <Typography> Likes</Typography>
-            <FavoriteIcon />
+            <Typography sx={{ fontSize: isMobile ? '0.75rem' : "0.85rem" }}> Likes</Typography>
+            <FavoriteIcon sx={{ fontSize: isMobile ? '1rem' : null }} />
           </Box>
           <Box
             sx={{
@@ -97,19 +100,22 @@ const PostsFeeds = ({ name, title, commentsLength, text, allComments }) => {
               },
             }}
           >
-            <Typography>
+            <Typography sx={{ fontSize: isMobile ? '0.75rem' : "0.85rem" }}>
               {commentsLength <= 0
                 ? `${commentsLength} comment`
                 : `${commentsLength} comments`}
             </Typography>
-            <AddCommentIcon />
+            <AddCommentIcon sx={{ fontSize: isMobile ? '1rem' : "0.85rem" }}/>
           </Box>
-          <Box sx={{ p:'0.5rem', display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-              <Typography>
+
+        </Box>
+
+         {/* This will open when comments are clicked */}
+         <Box sx={{ p:'0.5rem', display: "flex", flexDirection: "column", gap: "0.5rem", maxWidth: "100%" }}>
+              <Typography sx={{ fontSize: isMobile ? '0.75rem' : "0.85rem" }}>
                 {allComments}
               </Typography>
           </Box>
-        </Box>
       </Box>
     </Box>
   );

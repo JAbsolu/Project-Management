@@ -21,18 +21,13 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import { useDispatch, useSelector } from "react-redux";
 import { setLogout } from "../../state/index";
 import { useState, useEffect } from "react";
-import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
-import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
-import illustration from "../../media/illustration.png";
-import { Tasks } from "../../components/dashboard-components/DashboardComponents";
 import { useMediaQuery } from "@mui/material";
 import PostsFeeds from "../../components/posts/PostsFeeds";
 import NewPost from "../../components/posts/newPost";
-import TeammatesCards from "../../components/Cards/TeammatesCard";
+import RightPanel from "./right-panel";
 
 const drawerWidth = 240;
 
@@ -102,12 +97,18 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 const Dashboard = () => {
+
+  const currentUser = useSelector((state) => state.user);
   const [tasks, setTasks] = useState();
   const [tasksErr, setTasksErr] = useState();
-  const currentUser = useSelector((state) => state.user);
+  const [open, setOpen] = React.useState(false);
+  const theme = useTheme();
+  const dispatch = useDispatch();
   const isMobile = useMediaQuery("(max-width: 600px)");
 
-  const getTasks = async () => {
+
+  // GET ALL POSTS
+  const getPosts = async () => {
     try {
       const response = await fetch("http://localhost:3100/posts", {
         method: "GET",
@@ -122,13 +123,11 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    getTasks();
+    getPosts();
   }, []);
 
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
-  const dispatch = useDispatch();
 
+  // MENU DRAWER
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -141,7 +140,6 @@ const Dashboard = () => {
     dispatch(setLogout());
   };
 
-  const userFullName = `${currentUser.firstName} ${currentUser.lastName}`;
 
   return (
     <Box sx={{ display: "flex", minHeight: "90vh", background: "#0f1925" }}>
@@ -169,6 +167,7 @@ const Dashboard = () => {
               textDecoration: "none",
               color: "inherit",
               fontWeight: "bold",
+              fontSize: isMobile ? "1rem" : null,
             }}
           >
             TASKFLOW
@@ -257,117 +256,31 @@ const Dashboard = () => {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: "0 0.25rem" }}>
         <DrawerHeader />
-        <Box sx={{ color: "#fff", display: "flex", gap: "0.3rem" }}>
-          {/* LEFT SIDE OF DASHBOARD */}
-          <Box
-            sx={{
-              padding: "0.25rem",
-              display: "flex",
-              position: "fixed",
-              flexDirection: "column",
-              gap: "0.50rem",
-            }}
-          >
-            <Box
-              width="19.5rem"
-              height="22rem"
-              sx={{
-                // background: "#00000061",
-                background: "#ffffff03",
-                padding: "1rem 0.5rem",
-                boxShadow: 1,
-                display: "flex",
-                flexDirection: "column",
-                gap: "0.75rem",
-                margin: "0rem",
-                boxShadow: 1,
-              }}
-            >
-              <Typography fontWeight="bold" fontSize="1.2rem" p="0.25rem 0">
-                Welcome {userFullName}
-              </Typography>
-              <img
-                src={illustration}
-                width="100"
-                style={{ borderRadius: "5px" }}
-              />
-              <Box sx={{ display: "flex", gap: "0.5rem" }}>
-                <PersonOutlineOutlinedIcon />
-                <Typography fontWeight="300">{userFullName}</Typography>
-              </Box>
-              <Box sx={{ display: "flex", gap: "0.5rem" }}>
-                <WorkOutlineIcon />
-                <Typography fontWeight="500">{currentUser.title}</Typography>
-              </Box>
-              <Box sx={{ display: "flex", gap: "0.5rem" }}>
-                <LocationOnOutlinedIcon />
-                <Typography fontWeight="500">{currentUser.location}</Typography>
-              </Box>
-              <Box sx={{ display: "flex", gap: "0.5rem" }}>
-                <AssignmentOutlinedIcon />
-                <Typography fontWeight="500"> Tasks: {Tasks.length}</Typography>
-              </Box>
-            </Box>
+        <Box sx={{ color: "#fff", display: isMobile ? null : "flex", gap: isMobile ? 0 : "0.3rem" }}>
 
-            {/* USER TEAMMATES */}
-            <Box
-              width="19.5rem"
-              height={"35.1rem"}
-              sx={{
-                // background: "#00000061",
-                background: "#ffffff03",
-                padding: "1rem 0.5rem",
-                overflowY: "scroll",
-                margin: "0rem",
-                boxShadow: 1,
-              }}
-            >
-              <Typography
-                fontWeight="bold"
-                fontSize="1.2rem"
-                p="0.25rem 0"
-                mb="0.5rem"
-              >
-                My Teammates
-              </Typography>
-              <Box
-                width="18rem"
-                sx={{
-                  display: "flex",
-                  flexWrap: "wrap",
-                  gap: "0.25rem",
-                }}
-              >
-                <TeammatesCards
-                  link="none"
-                  name={userFullName}
-                  image={illustration}
-                  title={currentUser.title}
-                />
-              </Box>
-            </Box>
-          </Box>
+        {/* USER INFO SHOULD BE ADDED BELOW THIS COMMENT*/}
+          
 
 
-          {/* RIGHT PANEL*/}
-
-
+          {/* RIGHT PANEL SHOULD BE ADDED BELOW THIS COMMENT*/}
           <Box
             dth="auto"
             minHeight={!isMobile ? "100vh" : "auto"}
             sx={{
               // background: "#00000061",
               background: "#ffffff03",
-              padding: "0.5rem 1rem",
+              maxWidth: isMobile ? "100rem" : null,
+              padding: isMobile ? null : "0.5rem 1rem",
               overflowY: "scroll",
               mt: "0.3rem",
-              ml: "20rem",
+              ml: "0.2rem",
               boxShadow: 1,
             }}
           >
             <Typography
+              variant={isMobile ? "h6" : "h5"}
               fontWeight="bold"
-              fontSize="1.2rem"
+              fontSize={isMobile ? "1rem" : "1.2rem"}
               p="0.25rem 0"
               mb="0.5rem"
             >
@@ -379,13 +292,16 @@ const Dashboard = () => {
                 background: "#212e3f",
                 p: "1rem",
                 borderRadius: "5px",
+                maxWidth: "100%",
               }}
             >
-              <Typography fontWeight="bold" mb="0.5rem">
+              <Typography fontWeight="bold" mb={isMobile ? "1rem" :"0.5rem"}>
                 Add a post
               </Typography>
+
                 {/* NEW POST COMPONENT */}
                 <NewPost />
+
             </Box>
 
             {tasks
@@ -400,7 +316,12 @@ const Dashboard = () => {
                 ))
               : ""}
           </Box>
-          {/*  */}
+
+          {/* Right Panel */}
+          {
+            isMobile ? null : <RightPanel />
+          }
+
         </Box>
       </Box>
     </Box>

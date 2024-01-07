@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Typography, Box, Button, FormControl } from '@mui/material';
+import { Typography, Box, Button, useMediaQuery } from '@mui/material';
 import Modal from '@mui/material/Modal';
 import { TextField } from '@mui/material';
 import { useParams } from 'react-router-dom';
@@ -17,7 +17,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: "75%",
   bgcolor: 'background.paper',
   borderRadius: "5px",
   boxShadow: 2,
@@ -30,6 +30,7 @@ const NewPost = () => {
   const handleClose = () => setOpen(false);
   const currentUser = useSelector((state) => state.user);
   const { userId } = useParams();
+  const isMobile = useMediaQuery("(max-width: 600px)");
 
   // GET FORM DATA
   const [inputValues, setInputValues] = useState({
@@ -48,7 +49,7 @@ const NewPost = () => {
     }));
   };
 
-  const createTask = async () => {
+  const createPost = async () => {
     try {
       const response = await fetch(`http://localhost:3100/posts/${currentUser._id}`, {
         method: "POST",
@@ -82,8 +83,9 @@ const NewPost = () => {
         <img
           src={illustration}
           alt="user"
-          width="60px"
-          style={{ borderRadius: "0.3rem" }}
+          width={isMobile ? "45px" : "60px"}
+          height={isMobile ? "45px" : "60px"}
+          style={{ borderRadius: "50%" }}
         />
         <input
             type="text"
@@ -105,8 +107,8 @@ const NewPost = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style} component="form" onSubmit={createTask}>
-            <Typography variant="h5" mb="1rem" textAlign="center" >Create new post</Typography>
+        <Box sx={style} component="form" onSubmit={createPost}>
+            <Typography variant="h6" mb="1rem" textAlign="center" >Create new post</Typography>
             <TextField 
                 name="userId" 
                 value={currentUser._id} 
@@ -152,6 +154,7 @@ const NewPost = () => {
                 style={{ 
                     height: "15rem", 
                     width: "99%", 
+                    padding: "0.5rem",
                     background: "#6a798952", 
                     fontSize: "1rem",
                 }}
