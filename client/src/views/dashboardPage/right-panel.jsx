@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import illustration from "../../media/illustration.png";
 import { useMediaQuery } from "@mui/material";
-import { Tasks } from "../../components/Dashboard/DashboardComponents";
+import { Tasks } from "../../components/Dashboard/index";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
@@ -32,11 +32,12 @@ const RightPanel = () => {
             sx={{
               display: "flex",
               justifyContent: "space-between",
+              minWidth: "15rem",
             }}
           >
             <Typography
               fontWeight="bold"
-              fontSize="1.2rem"
+              fontSize="1rem"
               p="0.25rem 0"
               mb="0.5rem"
             >
@@ -44,9 +45,9 @@ const RightPanel = () => {
             </Typography>
             <Typography
               variant="a"
-              fontSize="1rem"
+              fontSize="0.75rem"
               p="0.25rem 0"
-              mb="0.5rem"
+              mt= "0.25rem"
               sx={{
                 "&:hover": {
                   textDecoration: "underline",
@@ -63,31 +64,12 @@ const RightPanel = () => {
               background: "#212e3f",
               p: "1rem",
               borderRadius: "5px",
+              minHeight: "20rem",
             }}
           >
-            <Typography fontWeight="bold" mb="0.5rem">
-              Add a post
+            <Typography fontWeight="bold" mb="0.5rem" sx={{ fontSize: '0.9rem'}}>
+             Team tasks
             </Typography>
-            <Box sx={{ display: "flex", gap: "0.5rem" }}>
-              <img
-                src={illustration}
-                alt="user"
-                width="70px"
-                style={{ borderRadius: "5px" }}
-              />
-              <input
-                type="text"
-                style={{
-                  background: "#6a798952",
-                  flexGrow: 1,
-                  border: "none",
-                  fontSize: "1rem",
-                  padding: "0.8rem 0.2rem",
-                  color: "#fff",
-                  borderRadius: "5px",
-                }}
-              />
-            </Box>
           </Box>
           {tasks
             ? tasks.map((poster) => (

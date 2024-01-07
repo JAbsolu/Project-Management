@@ -37,7 +37,7 @@ const PostsFeeds = ({ name, title, commentsLength, text, allComments }) => {
           background: "#212e3f",
           maxWidth: isMobile ? "100%" : null,
           p: "1rem",
-          m: "1rem 0",
+          m: "0.5rem 0",
           borderRadius: "5px",
         }}
       >
@@ -58,11 +58,11 @@ const PostsFeeds = ({ name, title, commentsLength, text, allComments }) => {
           />
           <Box>
             <Typography fontWeight="bolder"> {name} </Typography>
-            <Typography fontWeight="500"> {title} </Typography>
+            <Typography fontWeight="500" sx={{fontSize: isMobile ? '0.85rem' : "0.9rem",}}> {title} </Typography>
           </Box>
         </Box>
         <Box>
-          <Typography sx={{fontSize: isMobile ? '0.85rem' : "1rem", lineHeight: 2, }}>{text}</Typography>
+          <Typography sx={{fontSize: isMobile ? '0.85rem' : "0.9rem", lineHeight: 2, }}>{text}</Typography>
         </Box>
         <Box
           sx={{
@@ -86,7 +86,7 @@ const PostsFeeds = ({ name, title, commentsLength, text, allComments }) => {
             }}
           >
             <Typography sx={{ fontSize: isMobile ? '0.75rem' : "0.85rem" }}> Likes</Typography>
-            <FavoriteIcon sx={{ fontSize: isMobile ? '1rem' : null }} />
+            <FavoriteIcon sx={{ fontSize: isMobile ? '1rem' : '1rem', mt: '0.1rem'  }} />
           </Box>
           <Box
             sx={{
@@ -105,7 +105,7 @@ const PostsFeeds = ({ name, title, commentsLength, text, allComments }) => {
                 ? `${commentsLength} comment`
                 : `${commentsLength} comments`}
             </Typography>
-            <AddCommentIcon sx={{ fontSize: isMobile ? '1rem' : "0.85rem" }}/>
+            <AddCommentIcon sx={{ fontSize: isMobile ? '1rem' : "1rem", mt: '0.2rem' }}/>
           </Box>
 
         </Box>

@@ -269,7 +269,7 @@ const Dashboard = () => {
             sx={{
               // background: "#00000061",
               background: "#ffffff03",
-              maxWidth: isMobile ? "100rem" : null,
+              maxWidth: isMobile ? "100rem" : "70%",
               padding: isMobile ? null : "0.5rem 1rem",
               overflowY: "scroll",
               mt: "0.3rem",
