@@ -7,7 +7,6 @@ const Post = require('../models/Post');
 //Set up database connection
 const connectDb = async () => {
     try {
-
         await mongoose.connect(process.env.DATABSE_URI, {
             useNewUrlParser: true,
             useUnifiedTopology: true,

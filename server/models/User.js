@@ -53,8 +53,8 @@ const userSchema = mongoose.Schema({
         default: [],
     },
     team: {
-        type: Array,
-        default: [],
+        type: Map,
+        default: {},
     },
     teammates: {
         type: Array,
